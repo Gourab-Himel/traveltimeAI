@@ -1,0 +1,14 @@
+# The minimum system and language requirement for running modern versions of FastAPI is Python 3.10 or higher.
+# If you are setting up a project, it is highly recommended to use Python 3.12 or 3.13 for optimal performance and stability.
+
+# Standard Requirements (requirements.txt)When creating a production-ready requirements.txt file, you should pin your core packages to ensure repeatable builds.
+# Installing fastapi[standard] automatically bundles the framework with its underlying ASGI server and standard extensions.
+# Here is a standard, production-ready requirements.txt setup:
+
+# Core Framework & Recommended Extensions
+# fastapi[standard]==0.136.1
+
+# Common Production Additions (Optional but recommended)
+# pydantic-settings>=2.0.0      # For managing environment variables
+# sqlalchemy>=2.0.0             # For database ORM connectivity
+# psycopg2-binary>=2.9.0        # For PostgreSQL database access
