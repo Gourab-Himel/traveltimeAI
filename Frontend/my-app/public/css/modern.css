@@ -1,0 +1,123 @@
+/* Modern CSS Overrides */
+:root {
+    --primary: #007bff;
+    --secondary: #6c757d;
+    --accent: #ff5722;
+    --dark: #1a1a1a;
+    --light: #f8f9fa;
+    --surface: #ffffff;
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+    --card-radius: 16px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700&display=swap');
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--light);
+    color: var(--dark);
+}
+
+h1, h2, h3, h4, h5, h6, .site-navbar .site-navigation .site-menu > li > a {
+    font-family: var(--font-heading);
+}
+
+/* Navbar */
+.site-navbar {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-sm);
+}
+.site-navbar .site-navigation .site-menu > li > a {
+    color: var(--dark) !important;
+    font-weight: 600;
+}
+.site-navbar .site-navigation .site-menu > li.active > a {
+    color: var(--primary) !important;
+}
+
+/* Hero Section */
+.hero-text {
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+/* Cards (Listing Items) */
+.listing-item {
+    background: var(--surface);
+    border-radius: var(--card-radius);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.listing-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.listing-item img {
+    border-radius: var(--card-radius) var(--card-radius) 0 0;
+    height: 250px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.listing-item-content {
+    padding: 20px;
+}
+
+.listing-item-content .category {
+    background: var(--primary);
+    color: white;
+    border-radius: 50px;
+    padding: 5px 15px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.listing-item-content h2 a {
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.listing-item-content .price {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), #0056b3);
+    border: none;
+    border-radius: 50px;
+    padding: 12px 30px;
+    box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,123,255,0.4);
+}
+
+/* Inputs */
+.form-control {
+    border-radius: 10px;
+    padding: 12px 20px;
+    border: 1px solid #eee;
+    background: #fdfdfd;
+}
+.form-control:focus {
+    box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
+    border-color: var(--primary);
+}

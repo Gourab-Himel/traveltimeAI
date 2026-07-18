@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Dashboard - TravelTime</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/modern.css">
+    <style>
+        body {
+            padding-top: 50px;
+        }
+
+        .admin-card {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2 class="mb-4">Agent Portal</h2>
+
+        <div class="row">
+            <!-- Add Package Form -->
+            <div class="col-md-5 mb-4">
+                <div class="admin-card">
+                    <h4 class="mb-3">Create New Package</h4>
+                    <form id="add-trip-form">
+                        <div class="form-group">
+                            <label>Package Name</label>
+                            <input type="text" class="form-control" id="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <input type="text" class="form-control" id="category" value="Package" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Price ($)</label>
+                            <input type="number" class="form-control" id="price" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Image URL</label>
+                            <input type="text" class="form-control" id="image" placeholder="images/img_1.jpg"
+                                value="images/img_1.jpg">
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control" id="description" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-block">Publish Package</button>
+                        <div id="msg" class="mt-2 text-center"></div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- My Packages List -->
+            <div class="col-md-7">
+                <div class="admin-card">
+                    <h4 class="mb-3">All Packages</h4>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Title</th>
+                                    <th>Price</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="trips-table-body">
+                                <!-- Dynamic Content -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data-store.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // Security Check
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (!user || user.role !== 'agent') {
+            alert('Access Denied: Agents Only');
+            window.location.href = 'index.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadTrips();
+
+            document.getElementById('add-trip-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const data = {
+                    title: document.getElementById('title').value,
+                    category: 'package',
+                    price: document.getElementById('price').value,
+                    image: document.getElementById('image').value,
+                    description: document.getElementById('description').value
+                };
+
+                try {
+                    const res = await fetch('/api/trips', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+                    if (res.ok) {
+                        document.getElementById('msg').innerHTML = '<span class="text-success">Package Published!</span>';
+                        document.getElementById('add-trip-form').reset();
+                        loadTrips();
+                    } else { throw new Error('API Error'); }
+                } catch (e) { console.error(e); }
+            });
+        });
+
+        async function loadTrips() {
+            try {
+                const res = await fetch('/api/trips?category=package');
+                const trips = await res.json();
+                const tbody = document.getElementById('trips-table-body');
+                tbody.innerHTML = '';
+                trips.forEach(t => {
+                    tbody.innerHTML += `<tr><td>${t.id}</td><td>${t.title}</td><td>$${t.price}</td><td><button class="btn btn-sm btn-outline-danger">Unlist</button></td></tr>`;
+                });
+            } catch (e) { console.error(e); }
+        }
+    </script>
+
+</body>
+
+</html>

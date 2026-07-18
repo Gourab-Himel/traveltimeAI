@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hotels — Bangladesh Trips</title>
+  <link rel="stylesheet" href="css/hotel.css">
+</head>
+<body>
+  <header class="hotel-header">
+    <div class="container">
+      <h1>Hotels & Stays</h1>
+      <p>Comfortable stays to complement your Bangladesh adventure.</p>
+      <nav class="hotel-nav"><a href="../index.html">Home</a> · <a href="../trips.html">Trips</a></nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hotel-list">
+      <article class="hotel-card">
+        <img src="../images/img_4.jpg" alt="Hotel Sylhet" class="hotel-img">
+        <div class="hotel-body">
+          <h2>Sylhet Riverside Hotel</h2>
+          <p class="price">৳ 4,000 / night</p>
+          <p>Stay near tea gardens with comfortable rooms and local cuisine. Free breakfast included.</p>
+          <div class="actions">
+            <button class="btn" onclick="bookNow('Sylhet Riverside Hotel')">Book Now</button>
+            <a class="btn ghost" href="#" onclick="viewDetails(event,'Sylhet Riverside Hotel')">Details</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="hotel-card">
+        <img src="../images/img_5.jpg" alt="Hotel Barisal" class="hotel-img">
+        <div class="hotel-body">
+          <h2>Barisal Agro Lodge</h2>
+          <p class="price">৳ 3,200 / night</p>
+          <p>Eco-friendly lodge next to riverine farmlands; great for agro-tourism visitors.</p>
+          <div class="actions">
+            <button class="btn" onclick="bookNow('Barisal Agro Lodge')">Book Now</button>
+            <a class="btn ghost" href="#" onclick="viewDetails(event,'Barisal Agro Lodge')">Details</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="hotel-card">
+        <img src="../images/img_6.jpg" alt="Hotel Rajshahi" class="hotel-img">
+        <div class="hotel-body">
+          <h2>Rajshahi Heritage Inn</h2>
+          <p class="price">৳ 3,800 / night</p>
+          <p>Comfortable rooms and guided trips to nearby cultural sites and mango orchards.</p>
+          <div class="actions">
+            <button class="btn" onclick="bookNow('Rajshahi Heritage Inn')">Book Now</button>
+            <a class="btn ghost" href="#" onclick="viewDetails(event,'Rajshahi Heritage Inn')">Details</a>
+          </div>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <footer class="hotel-footer">
+    <div class="container">
+      <p>© <span id="yr"></span> Bangladesh Trips — All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/hotel.js"></script>
+</body>
+</html>
